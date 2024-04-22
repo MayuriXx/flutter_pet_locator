@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,37 +31,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    List<Container> cards = [
+      Container(
+        alignment: Alignment.center,
+        child: const Text('1'),
+        color: Colors.blue,
+      ),
+      Container(
+        alignment: Alignment.center,
+        child: const Text('2'),
+        color: Colors.red,
+      ),
+      Container(
+        alignment: Alignment.center,
+        child: const Text('3'),
+        color: Colors.purple,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: CardSwiper(
+          cardsCount: cards.length,
+          cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
+              cards[index],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
