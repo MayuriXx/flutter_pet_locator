@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:flutter_pet_locator/widgets/pet_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,22 +34,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    List<Container> cards = [
-      Container(
-        alignment: Alignment.center,
-        child: const Text('1'),
-        color: Colors.blue,
-      ),
-      Container(
-        alignment: Alignment.center,
-        child: const Text('2'),
-        color: Colors.red,
-      ),
-      Container(
-        alignment: Alignment.center,
-        child: const Text('3'),
-        color: Colors.purple,
-      )
+    List<PetCard> cards = [
+      const PetCard(),
+      const PetCard(),
+      const PetCard(),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -58,14 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: CardSwiper(
           cardsCount: cards.length,
-          cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
+          cardBuilder: (
+            context,
+            index,
+            percentThresholdX,
+            percentThresholdY,
+          ) =>
               cards[index],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
